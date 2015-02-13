@@ -1,0 +1,56 @@
+import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class GameController implements MouseListener {
+	
+	private GameModel gameModel;
+	private GamePanel gamePanel;
+	private StatusPanel statusPanel;
+	
+	private JFrame gameFrame;
+	
+	public GameController() {
+		
+		gameModel = new GameModel();
+		gamePanel = new GamePanel(gameModel.getBoard(), this);
+		
+		statusPanel = new StatusPanel(gameModel.isXPlayersTurn());
+		
+		gameFrame = new JFrame("Tic Tac Toe");
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameFrame.setResizable(false);
+		gameFrame.getContentPane().setLayout(new BorderLayout());
+		gameFrame.getContentPane().add(statusPanel, BorderLayout.NORTH);
+		gameFrame.getContentPane().add(gamePanel, BorderLayout.SOUTH);
+		gameFrame.pack();
+		gameFrame.setLocation(1000, 400);
+		gameFrame.setVisible(true);
+	}
+
+	public void mouseClicked(MouseEvent e) {}
+
+	public void mouseEntered(MouseEvent e) {}
+
+	public void mouseExited(MouseEvent e) {}
+
+	public void mousePressed(MouseEvent event) {
+		
+		int xPositionClicked = event.getY() / (gamePanel.PLACEHOLDER_SIZE + gamePanel.GAP/2);
+		int yPositionClicked = event.getX() / (gamePanel.PLACEHOLDER_SIZE + gamePanel.GAP/2);
+		
+		if (gameModel.placeMark(xPositionClicked, yPositionClicked)) {
+			gamePanel.repaint();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "The location has already been played!");
+			System.exit(0);
+		}
+		
+	}
+
+	public void mouseReleased(MouseEvent e) {}
+}

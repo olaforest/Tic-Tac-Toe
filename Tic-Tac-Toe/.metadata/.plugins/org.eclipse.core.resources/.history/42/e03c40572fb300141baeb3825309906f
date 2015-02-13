@@ -1,0 +1,79 @@
+
+public class GameModel {
+	
+	public static final int BOARD_SIZE = 3;
+	
+	public static enum GameStatus {ongoing, draw, xPlayerWin, oPlayerWin};
+	
+	private GameStatus gameStatus;
+	private int playCount;
+	private boolean isXPlayersTurn;
+	private Mark[][] board;
+	
+	public GameModel() {
+		
+		gameStatus = GameStatus.ongoing;
+		playCount = 0;
+
+		board = new Mark[BOARD_SIZE][BOARD_SIZE];
+		
+		isXPlayersTurn = true;
+	}
+	
+	public boolean placeMark(int xPos, int yPos) {
+		
+		if (isLocationFree(xPos, yPos)) {
+			
+			if (isXPlayersTurn) {
+				board[xPos][yPos] = new Mark(true);
+				isXPlayersTurn = false;
+			}
+			else {
+				board[xPos][yPos] = new Mark(false);
+				isXPlayersTurn = true;
+			}
+			playCount++;
+			updateGameStatus();
+			return true;
+		}
+		return false;
+	}
+	
+	public Mark[][] getBoard() {
+		return board;
+	}
+	
+	public boolean isXPlayersTurn() {
+		return isXPlayersTurn;
+	}
+	
+	private boolean isLocationFree(int xPos, int yPos) {
+		
+		if (board[xPos][yPos] == null) {return true;}
+		
+		return false;
+	}
+	
+	private void updateGameStatus() {
+		
+		
+		
+		for (int i = 0; i < BOARD_SIZE; i++) {
+			
+			if (board[i][0] == null || board[i][1] == null || board[i][2] == null) {
+				continue;
+			}
+			else {
+				if (board[i][0].isXMark() && board[i][1].isXMark() && board[i][2].isXMark()) {
+					gameStatus = GameStatus.xPlayerWin;
+					break;
+				}
+				else if (board[i][0].isXMark() && board[i][1].isXMark() && board[i][2].isXMark()) {
+					gameStatus = GameStatus.oPlayerWin;
+					break;
+				}
+				
+			}
+		}
+	}
+}

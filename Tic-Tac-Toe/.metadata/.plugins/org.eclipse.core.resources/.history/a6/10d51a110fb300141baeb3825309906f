@@ -1,0 +1,11 @@
+import javax.swing.JPanel;
+
+
+@SuppressWarnings("serial")
+public class StatusPanel extends JPanel {
+	
+	public StatusPanel() {
+		
+		setPreferredSize(new Dimension(300, 100));
+	}
+}

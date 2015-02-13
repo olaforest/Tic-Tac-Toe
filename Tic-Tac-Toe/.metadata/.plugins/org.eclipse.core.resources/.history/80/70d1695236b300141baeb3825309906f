@@ -1,0 +1,13 @@
+/**
+ * @author Oli
+ *
+ */
+public class TicTacToe {
+
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {
+		
+		GameController gameController = new GameController();
+
+	}
+}

@@ -1,0 +1,25 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+
+public class OMarkPanel extends JPanel {
+	
+	private int[] xPosXMark = {3, 6, 50, 94, 97, 55, 97, 94, 50, 6, 3, 45};
+	private int[] yPosXMark = {6, 3, 45, 3, 6, 50, 94, 97, 55, 97, 94, 50}; 
+	
+	public OMarkPanel() {
+		setPreferredSize(new Dimension(100, 100));
+		setBackground(Color.gray);
+	}
+	
+	public void paintComponent(Graphics page) {
+		
+		super.paintComponent(page);
+		
+		page.setColor(Color.lightGray);
+		page.fillPolygon(xPosXMark, yPosXMark, xPosXMark.length);
+	}
+}

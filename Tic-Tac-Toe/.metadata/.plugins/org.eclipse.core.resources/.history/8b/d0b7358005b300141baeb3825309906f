@@ -1,0 +1,12 @@
+
+public class Mark {
+	
+	boolean isXMark;
+	int xPosition, yPosition;
+	
+	public Mark(int xPos, int yPos) {
+		
+		xPosition = xPos;
+		yPosition = yPos;
+	}
+}

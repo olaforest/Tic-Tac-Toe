@@ -1,0 +1,12 @@
+
+public class Mark {
+	
+	private boolean isXMark;
+	private int xPosition, yPosition;
+	
+	public Mark(boolean type) {
+		isXMark = type;
+	}
+	
+	public boolean isXMark() {return isXMark;}
+}

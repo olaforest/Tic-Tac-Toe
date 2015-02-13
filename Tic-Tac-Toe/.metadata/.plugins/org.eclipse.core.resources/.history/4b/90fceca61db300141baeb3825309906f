@@ -1,0 +1,22 @@
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class GamePanel extends JPanel {
+	
+	public final int PLACEHOLDER_SIZE = 100, GAP = 5;
+	
+	private int panelSize = PLACEHOLDER_SIZE * GameModel.BOARD_SIZE + GAP * (GameModel.BOARD_SIZE - 1);
+	
+	public GamePanel() {
+		setPreferredSize(new Dimension(panelSize, panelSize));
+		setLayout(new GridLayout(GameModel.BOARD_SIZE, GameModel.BOARD_SIZE, GAP, GAP));
+		
+		
+	}
+	
+	
+}

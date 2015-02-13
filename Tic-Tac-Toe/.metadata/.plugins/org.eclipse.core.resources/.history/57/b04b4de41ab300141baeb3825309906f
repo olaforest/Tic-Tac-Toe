@@ -1,0 +1,22 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+@SuppressWarnings("serial")
+public class StatusPanel extends JPanel {
+	
+	JLabel statusLabel;
+	
+	public StatusPanel() {
+		
+		setPreferredSize(new Dimension(300, 50));
+		statusLabel = new JLabel("Test");
+		statusLabel.setFont(new Font("Serif", Font.PLAIN, 14));
+		setBackground(Color.lightGray);
+		add(statusLabel);
+	}
+}

@@ -1,0 +1,11 @@
+
+public class Mark {
+	
+	int xPosition, yPosition;
+	
+	public Mark(int xPos, int yPos) {
+		
+		xPosition = xPos;
+		yPosition = yPos;
+	}
+}
