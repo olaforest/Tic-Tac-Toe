@@ -1,7 +1,8 @@
 /**
  * @author Olivier Laforest
- * @Date February 12th, 2015
+ * @date February 12th, 2015
  * 
+ * TicTacToe class in which the game is launch from the main method.
  */
 public class TicTacToe {
 
@@ -9,6 +10,5 @@ public class TicTacToe {
 	public static void main(String[] args) {
 		
 		GameController gameController = new GameController();
-
 	}
 }

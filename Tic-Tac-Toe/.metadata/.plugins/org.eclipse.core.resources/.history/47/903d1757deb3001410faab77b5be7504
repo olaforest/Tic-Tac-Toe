@@ -1,0 +1,68 @@
+/**
+ * @author Olivier Laforest
+ * @date February 12th, 2015
+ * 
+ * GamePanel class displays the board where the game of tic tac toe is played.
+ */
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.MouseListener;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class GamePanel extends JPanel {
+	
+	public final int PLACEHOLDER_SIZE = 100, GAP = 4;
+	
+	private int panelSize = PLACEHOLDER_SIZE * GameModel.BOARD_SIZE + GAP * (GameModel.BOARD_SIZE - 1);
+	
+	private Mark[][] boardRef;
+	private EmptyPanel[][] panels;
+	
+	public GamePanel(Mark[][] boardRef, MouseListener mouseListener) {
+		
+		setPreferredSize(new Dimension(panelSize, panelSize));
+		setLayout(new GridLayout(GameModel.BOARD_SIZE, GameModel.BOARD_SIZE, GAP, GAP));
+		addMouseListener(mouseListener);
+		
+		this.boardRef = boardRef;
+		panels = new EmptyPanel[GameModel.BOARD_SIZE][GameModel.BOARD_SIZE];
+		
+		for (int i = 0; i < GameModel.BOARD_SIZE; i++) {
+			for (int j = 0; j < GameModel.BOARD_SIZE; j++) {
+				panels[i][j] = new EmptyPanel();
+					add(panels[i][j]);
+			}
+		}
+	}
+	
+	public void paintComponent(Graphics page) {
+		
+		super.paintComponent(page);
+		
+		updatePanel();
+		
+		revalidate();
+	}
+	
+	private void updatePanel() {
+		
+		for (int i = 0; i < GameModel.BOARD_SIZE; i++) {
+			for (int j = 0; j < GameModel.BOARD_SIZE; j++) {
+				
+				if (boardRef[i][j] != null) {
+					
+					if (boardRef[i][j].isXMark()) {
+						panels[i][j].setPanelStatusToX();
+					}
+					else {
+						panels[i][j].setPanelStatusToO();
+					}
+				}
+			}
+		}
+	}
+}

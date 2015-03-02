@@ -1,0 +1,16 @@
+/**
+ * @author Olivier Laforest
+ * @Date February 12th, 2015
+ * 
+ * Mark class which implements the 'X' symbol or 'O' symbol that each players can put on the board.
+ */
+public class Mark {
+	
+	private boolean isXMark;
+	
+	public Mark(boolean type) {
+		isXMark = type;
+	}
+	
+	public boolean isXMark() {return isXMark;}
+}

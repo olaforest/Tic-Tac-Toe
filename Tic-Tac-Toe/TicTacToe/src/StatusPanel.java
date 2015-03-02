@@ -1,3 +1,10 @@
+/**
+ * @author Olivier Laforest
+ * @date February 12th, 2015
+ * 
+ * StatusPanel class displays which player's turn it currently is.
+ */
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,6 +29,9 @@ public class StatusPanel extends JPanel {
 		setText(isXPlayersTurn);
 	}
 	
+	/**
+	 * @param isXPlayersTurn specifies which player's turn it is.
+	 */
 	public void setText(boolean isXPlayersTurn) {
 		
 		if (isXPlayersTurn) {

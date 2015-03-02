@@ -1,6 +1,6 @@
 /**
  * @author Olivier Laforest
- * @Date February 12th, 2015
+ * @date February 12th, 2015
  * 
  * GameController class which is responsible for updating the game model according to the 
  * user's actions and refreshing the game view every time the game model changes.

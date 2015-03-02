@@ -1,3 +1,10 @@
+/**
+ * @author Olivier Laforest
+ * @date February 12th, 2015
+ * 
+ * GamePanel class displays the board where the game is played.
+ */
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -13,7 +20,14 @@ public class GamePanel extends JPanel {
 	private int panelSize = PLACEHOLDER_SIZE * GameModel.BOARD_SIZE + GAP * (GameModel.BOARD_SIZE - 1);
 	
 	private Mark[][] boardRef;
+	private MarkPanel[][] panels;
 	
+	/**
+	 * Creates a new GamePanel with the specified game board and mouse listener.
+	 * 
+	 * @param boardRef is a reference to the game board to be displayed.
+	 * @param mouseListener listens to the mouse events occuring on the game panel.
+	 */
 	public GamePanel(Mark[][] boardRef, MouseListener mouseListener) {
 		
 		setPreferredSize(new Dimension(panelSize, panelSize));
@@ -21,38 +35,41 @@ public class GamePanel extends JPanel {
 		addMouseListener(mouseListener);
 		
 		this.boardRef = boardRef;
+		panels = new MarkPanel[GameModel.BOARD_SIZE][GameModel.BOARD_SIZE];
 		
-		setupPanel();
+		for (int i = 0; i < GameModel.BOARD_SIZE; i++) {
+			for (int j = 0; j < GameModel.BOARD_SIZE; j++) {
+				panels[i][j] = new MarkPanel();
+					add(panels[i][j]);
+			}
+		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics page) {
 		
 		super.paintComponent(page);
 		
-		removeAll();
-		
-		setupPanel();
-		
+		updatePanel();
 		revalidate();
 	}
 	
-	public void updateBoardRef(Mark[][] boardRef) {
-		this.boardRef = boardRef;
-	}
-	
-	private void setupPanel() {
+	// Updates the panel elements in order to reflect the state of the game board.
+	private void updatePanel() {
 		
 		for (int i = 0; i < GameModel.BOARD_SIZE; i++) {
 			for (int j = 0; j < GameModel.BOARD_SIZE; j++) {
 				
-				if (boardRef[i][j] == null) {
-					add(new EmptyPanel());
-				} 
-				else if (boardRef[i][j].isXMark()) {
-					add(new XMarkPanel());
-				}
-				else {
-					add(new OMarkPanel());
+				if (boardRef[i][j] != null) {
+					
+					if (boardRef[i][j].isXMark()) {
+						panels[i][j].setPanelStatusToX();
+					}
+					else {
+						panels[i][j].setPanelStatusToO();
+					}
 				}
 			}
 		}

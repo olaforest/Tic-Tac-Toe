@@ -1,0 +1,13 @@
+/**
+ * @author Olivier Laforest
+ * @Date February 12th, 2015
+ * 
+ */
+public class TicTacToe {
+
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {
+		
+		GameController gameController = new GameController();
+	}
+}

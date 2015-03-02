@@ -1,7 +1,8 @@
 /**
  * @author Olivier Laforest
- * @Date February 12th, 2015
+ * @date February 12th, 2015
  * 
+ * Mark class which implements the 'X' or 'O' symbols that each players can put on the board.
  */
 public class Mark {
 	
@@ -11,5 +12,8 @@ public class Mark {
 		isXMark = type;
 	}
 	
+	/**
+	 * @return true of the mark is an 'X', and false if the mark is an 'O';
+	 */
 	public boolean isXMark() {return isXMark;}
 }

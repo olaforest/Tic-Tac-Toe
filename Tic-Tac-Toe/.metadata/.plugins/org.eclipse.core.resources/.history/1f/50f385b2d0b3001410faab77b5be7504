@@ -1,0 +1,135 @@
+/**
+ * @author Olivier Laforest
+ * @Date February 12th, 2015
+ * 
+ * GameModel class which is responsible of maintaining and updating the game model state.
+ */
+
+public class GameModel {
+	
+	public static final int BOARD_SIZE = 3;
+	
+	public static enum GameStatus {ongoing, draw, xPlayerWin, oPlayerWin};
+	
+	private GameStatus gameStatus;
+	private int playCount;
+	private boolean isXPlayersTurn;
+	private Mark[][] board;
+	
+	public GameModel() {
+		
+		gameStatus = GameStatus.ongoing;
+		playCount = 0;
+
+		board = new Mark[BOARD_SIZE][BOARD_SIZE];
+		
+		isXPlayersTurn = true;
+	}
+	
+	
+	/**
+	 * @param xPos x coordinate of the mark to be placed on the board (origin is on the right side of the board)
+	 * @param yPos y coordinate of the mark to be placed on the board (origin is on the top side of the board)
+	 * @return returns true if the desired location of the new mark is a location that has not been used already, false otherwise.  
+	 */
+	public boolean placeMark(int xPos, int yPos) {
+		
+		if (isLocationFree(xPos, yPos)) {
+			
+			if (isXPlayersTurn) {
+				board[yPos][xPos] = new Mark(true);
+				isXPlayersTurn = false;
+			}
+			else {
+				board[yPos][xPos] = new Mark(false);
+				isXPlayersTurn = true;
+			}
+			playCount++;
+			updateGameStatus();
+			return true;
+		}
+		return false;
+	}
+	
+	public Mark[][] getBoard() {
+		return board;
+	}
+	
+	public boolean isXPlayersTurn() {
+		return isXPlayersTurn;
+	}
+	
+	public int getGameStatus() {
+		return gameStatus.ordinal();
+	}
+	
+	private boolean isLocationFree(int xPos, int yPos) {
+		
+		if (board[yPos][xPos] == null) {return true;}
+		
+		return false;
+	}
+	
+	private void updateGameStatus() {
+		
+		for (int i = 0; i < BOARD_SIZE; i++) {
+			
+			if (board[i][0] == null || board[i][1] == null || board[i][2] == null)
+				continue;
+			else {
+				if (board[i][0].isXMark() && board[i][1].isXMark() && board[i][2].isXMark()) {
+					gameStatus = GameStatus.xPlayerWin;
+					return;
+				}
+				else if (!board[i][0].isXMark() && !board[i][1].isXMark() && !board[i][2].isXMark()) {
+					gameStatus = GameStatus.oPlayerWin;
+					return;
+				}
+			}
+		}
+			
+		for (int i = 0; i < BOARD_SIZE; i++) {
+			
+			if (board[0][i] == null || board[1][i] == null || board[2][i] == null)
+				continue;
+			else {
+				if (board[0][i].isXMark() && board[1][i].isXMark() && board[2][i].isXMark()) {
+					gameStatus = GameStatus.xPlayerWin;
+					return;
+				}
+				else if (!board[0][i].isXMark() && !board[1][i].isXMark() && !board[2][i].isXMark()) {
+					gameStatus = GameStatus.oPlayerWin;
+					return;
+				}
+			}
+		}
+		
+		if (board[0][0] != null && board[1][1] != null && board[2][2] != null) {
+			
+			if (board[0][0].isXMark() && board[1][1].isXMark() && board[2][2].isXMark()) {
+				gameStatus = GameStatus.xPlayerWin;
+				return;
+			}
+			else if (!board[0][0].isXMark() && !board[1][1].isXMark() && !board[2][2].isXMark()) {
+				gameStatus = GameStatus.oPlayerWin;
+				return;
+			}
+		}
+		
+		if (board[0][2] != null && board[1][1] != null && board[2][0] != null) {
+			
+			if (board[0][2].isXMark() && board[1][1].isXMark() && board[2][0].isXMark()) {
+				gameStatus = GameStatus.xPlayerWin;
+				return;
+			}
+			else if (!board[0][2].isXMark() && !board[1][1].isXMark() && !board[2][0].isXMark()) {
+				gameStatus = GameStatus.oPlayerWin;
+				return;
+			}
+		}
+		
+		if (playCount == 9) {
+			gameStatus = GameStatus.draw;
+		}
+	}
+}

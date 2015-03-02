@@ -13,15 +13,17 @@
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="java.awt.Graphics"/>
-<fullyQualifiedTypeName name="EmptyPanel"/>
 <fullyQualifiedTypeName name="XMarkPanel"/>
 <fullyQualifiedTypeName name="OMarkPanel"/>
 <fullyQualifiedTypeName name="Mark"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
 <fullyQualifiedTypeName name="java.util.concurrent.CountDownLatch"/>
-<fullyQualifiedTypeName name="GameModel"/>
 <fullyQualifiedTypeName name="GameModel.GameStatus"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream.PutField"/>
+<fullyQualifiedTypeName name="EmptyPanel.PanelStatus"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="GameModel"/>
+<fullyQualifiedTypeName name="EmptyPanel"/>
 </qualifiedTypeNameHistroy>
